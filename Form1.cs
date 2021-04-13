@@ -12,10 +12,14 @@ namespace Floyd
 {
     public partial class Form1 : Form
     {
+        //количество вершин графа
         int N;
+        //для главного грида
         DataTable Source;
+        //для таблицы L
         DataTable SourceL;
-        int IterCount = 0;
+        //количество шагов алгоритма
+        int IterCount = 1;
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +35,7 @@ namespace Floyd
             Source = CreateGrid(++k, Smezh);
             SourceL = Source;
             AdjustGrid(Smezh);
-            IterCount = 0;
+            IterCount = 1;
         }
 
         public void AdjustGrid(DataGridView data)
@@ -81,7 +85,7 @@ namespace Floyd
                             l1++;
                         }
                         else
-                        row[i] = "*";
+                        row[i] = "∞";
                     }      
                 }
                 dt.Rows.Add(row);
@@ -169,7 +173,41 @@ namespace Floyd
 
         private void button3_Click(object sender, EventArgs e)
         {
+            StepFloyd();
+            
+        }
 
+        public void StepFloyd()
+        {
+            if (IterCount <= N)
+            {
+                for (int i = 1; i <= N; i++)
+                {
+                    if (i == IterCount)
+                        continue;
+                    for (int j = 1; j <= N; j++)
+                    {
+                        if (j == IterCount)
+                            continue;
+                        if (tableL.Rows[IterCount].Cells[j].Value.ToString() != "∞" && tableL.Rows[i].Cells[IterCount].Value.ToString() != "∞")
+                        {
+                            int a = int.Parse(tableL.Rows[IterCount].Cells[j].Value.ToString());
+                            int b = int.Parse(tableL.Rows[i].Cells[IterCount].Value.ToString());
+
+                            if (tableL.Rows[i].Cells[j].Value.ToString() == "∞" || int.Parse(tableL.Rows[i].Cells[j].Value.ToString()) > (a + b))
+                            {
+                                tableL.Rows[i].Cells[j].Value = a + b;
+                                tableS.Rows[i].Cells[j].Value = tableS.Rows[i].Cells[IterCount].Value;
+                            }
+                        }
+                    }
+                }
+                IterCount++;
+            }
+            else
+            {
+                MessageBox.Show("Алгоритм закончен!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

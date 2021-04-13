@@ -29,6 +29,9 @@ namespace Floyd
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.inputN = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -79,6 +82,14 @@ namespace Floyd
             this.Smezh.ColumnHeadersVisible = false;
             this.Smezh.Location = new System.Drawing.Point(35, 61);
             this.Smezh.Name = "Smezh";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Smezh.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.Smezh.RowHeadersVisible = false;
             this.Smezh.Size = new System.Drawing.Size(240, 150);
             this.Smezh.TabIndex = 3;
@@ -91,6 +102,14 @@ namespace Floyd
             this.tableL.Location = new System.Drawing.Point(567, 61);
             this.tableL.Name = "tableL";
             this.tableL.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tableL.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.tableL.RowHeadersVisible = false;
             this.tableL.Size = new System.Drawing.Size(240, 150);
             this.tableL.TabIndex = 4;
@@ -103,6 +122,14 @@ namespace Floyd
             this.tableS.Location = new System.Drawing.Point(1038, 61);
             this.tableS.Name = "tableS";
             this.tableS.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tableS.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tableS.RowHeadersVisible = false;
             this.tableS.Size = new System.Drawing.Size(240, 150);
             this.tableS.TabIndex = 5;
