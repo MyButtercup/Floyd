@@ -179,16 +179,44 @@ namespace Floyd
 
         public void StepFloyd()
         {
+            int ColorIt = IterCount - 1;
+            if (ColorIt > 0)
+            {
+                for (int i = 1; i <= N; i++)
+                {
+
+                    for (int j = 1; j <= N; j++)
+                    {
+                        tableL.Rows[ColorIt].Cells[j].Style.BackColor = Color.White;
+                        tableL.Rows[i].Cells[ColorIt].Style.BackColor = Color.White;
+                        tableS.Rows[i].Cells[ColorIt].Style.BackColor = Color.White;
+                    }
+                }
+            }
             if (IterCount <= N)
             {
                 for (int i = 1; i <= N; i++)
                 {
                     if (i == IterCount)
+                    {
+                        for (int j = 1; j <= N; j++)
+                        {
+                            tableL.Rows[i].Cells[j].Style.BackColor = Color.Pink;
+                        }
                         continue;
+                    }
                     for (int j = 1; j <= N; j++)
                     {
                         if (j == IterCount)
+                        {
+                            for (int k = 1; k <= N; k++)
+                            {
+                               tableL.Rows[i].Cells[j].Style.BackColor = Color.Pink;
+                               tableS.Rows[i].Cells[j].Style.BackColor = Color.Pink;
+                            }
                             continue;
+                        }
+                            
                         if (tableL.Rows[IterCount].Cells[j].Value.ToString() != "∞" && tableL.Rows[i].Cells[IterCount].Value.ToString() != "∞")
                         {
                             int a = int.Parse(tableL.Rows[IterCount].Cells[j].Value.ToString());
