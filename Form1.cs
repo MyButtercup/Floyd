@@ -183,8 +183,7 @@ namespace Floyd
             if (ColorIt > 0)
             {
                 for (int i = 1; i <= N; i++)
-                {
-
+                { 
                     for (int j = 1; j <= N; j++)
                     {
                         tableL.Rows[ColorIt].Cells[j].Style.BackColor = Color.White;
@@ -203,6 +202,7 @@ namespace Floyd
                         {
                             tableL.Rows[i].Cells[j].Style.BackColor = Color.Pink;
                         }
+                        tableS.Rows[i].Cells[i].Style.BackColor = Color.Pink;
                         continue;
                     }
                     for (int j = 1; j <= N; j++)
