@@ -20,6 +20,9 @@ namespace Floyd
         DataTable SourceL;
         //количество шагов алгоритма
         int IterCount = 1;
+        double[] xArray;
+        double[] yArray;
+
         public Form1()
         {
             InitializeComponent();
@@ -36,8 +39,52 @@ namespace Floyd
             SourceL = Source;
             AdjustGrid(Smezh);
             IterCount = 1;
+            CreateGraph();
         }
 
+        public void CreateArrow()
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            Pen pen = new Pen(Color.Red);
+            for (int i = 1; i <= N; i++)
+            {
+                for (int j = 1; j <= N; j++)
+                {
+                    if (Smezh[i,j].Value.ToString() != "∞")
+                    {
+                        int xTemp = i - 1;
+                        int yTemp = j - 1;
+                        g.DrawLine(pen, (float)xArray[xTemp], (float)yArray[xTemp], (float)xArray[yTemp], (float)yArray[yTemp]);
+                    }
+                }
+            }
+        }
+
+        public void CreateGraph()
+        {
+            xArray = new double[N];
+            yArray = new double[N];
+            double radiusMin = 50;
+            double radius = 150;
+            double corner = 0;
+            double corner1 = (360 / N) * Math.PI / 180;
+            for (int i = 0; i < N; i++)
+            {
+                xArray[i] = (radius * Math.Cos(corner)) + 180;
+                yArray[i] = (radius * Math.Sin(corner)) + 180;
+                corner += corner1;
+            }
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.White);
+            Pen pen = new Pen(Color.Black);
+            char l = 'A';
+            for (int i = 0; i < N; i++)
+            {
+                g.DrawEllipse(pen, (float)xArray[i], (float)yArray[i], (float)radiusMin, (float)radiusMin);
+                g.DrawString(l.ToString(), new Font("Arial", 14), Brushes.Green, (float)xArray[i] + 15, (float)yArray[i] + 15);
+                l++;
+            }
+        }
         public void AdjustGrid(DataGridView data)
         {
             int nc, nr;
@@ -169,6 +216,7 @@ namespace Floyd
             AdjustGrid(tableS);
             CreateGridL(k, tableL);
             AdjustGrid(tableL);
+            CreateArrow();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -235,6 +283,14 @@ namespace Floyd
             else
             {
                 MessageBox.Show("Алгоритм закончен!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void inputN_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender, e);
             }
         }
     }
