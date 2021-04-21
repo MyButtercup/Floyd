@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,17 +45,34 @@ namespace Floyd
 
         public void CreateArrow()
         {
+            int xTemp, yTemp;
             Graphics g = pictureBox1.CreateGraphics();
             Pen pen = new Pen(Color.Red);
+            pen.Width = 3;
+            pen.CustomStartCap = new AdjustableArrowCap(3, 3);
+            //pen.StartCap = LineCap.ArrowAnchor;
             for (int i = 1; i <= N; i++)
             {
                 for (int j = 1; j <= N; j++)
                 {
                     if (Smezh[i,j].Value.ToString() != "∞")
                     {
-                        int xTemp = i - 1;
-                        int yTemp = j - 1;
-                        g.DrawLine(pen, (float)xArray[xTemp], (float)yArray[xTemp], (float)xArray[yTemp], (float)yArray[yTemp]);
+                        if (i == j)
+                        {
+                            xTemp = i - 1;
+                            yTemp = j - 1;
+                            g.DrawArc(pen, (float)xArray[xTemp] + 15, (float)yArray[yTemp], 50, 50, 90, -180);
+                            g.DrawString(Smezh[i,j].Value.ToString(), new Font("Times New Roman", 15), Brushes.Black, (float)xArray[xTemp] + 30, (float)yArray[yTemp] - 20);
+                        }
+                        else
+                        {
+                            xTemp = i - 1;
+                            yTemp = j - 1;
+                            g.DrawLine(pen, (float)xArray[xTemp] + 25, (float)yArray[xTemp] + 25, (float)xArray[yTemp] + 25, (float)yArray[yTemp] + 25);
+                            float x = (((float)xArray[xTemp] + 25) + ((float)xArray[yTemp] + 25)) / (float)2;
+                            float y = (((float)yArray[xTemp] + 25) + ((float)yArray[yTemp] + 25)) / (float)2;
+                            g.DrawString(Smezh[i, j].Value.ToString(), new Font("Times New Roman", 15), Brushes.Black, x, y);
+                        }
                     }
                 }
             }
@@ -81,7 +99,7 @@ namespace Floyd
             for (int i = 0; i < N; i++)
             {
                 g.DrawEllipse(pen, (float)xArray[i], (float)yArray[i], (float)radiusMin, (float)radiusMin);
-                g.DrawString(l.ToString(), new Font("Arial", 14), Brushes.Green, (float)xArray[i] + 15, (float)yArray[i] + 15);
+                g.DrawString(l.ToString(), new Font("Arial", 14), Brushes.Black, (float)xArray[i] + 15, (float)yArray[i] + 15);
                 l++;
             }
         }
@@ -140,8 +158,8 @@ namespace Floyd
             data.DataSource = dt;
             for (int k = 0; k < n; k++)
             {
-                data.Rows[0].Cells[k].Style.BackColor = Color.Green;
-                data.Rows[k].Cells[0].Style.BackColor = Color.Green;
+                data.Rows[0].Cells[k].Style.BackColor = Color.Moccasin;
+                data.Rows[k].Cells[0].Style.BackColor = Color.Moccasin;
             }
             return dt;
         }
@@ -151,8 +169,8 @@ namespace Floyd
             data.DataSource = SourceL;
             for (int k = 0; k < n; k++)
             {
-                data.Rows[0].Cells[k].Style.BackColor = Color.Green;
-                data.Rows[k].Cells[0].Style.BackColor = Color.Green;
+                data.Rows[0].Cells[k].Style.BackColor = Color.Moccasin;
+                data.Rows[k].Cells[0].Style.BackColor = Color.Moccasin;
             }
         }
 
@@ -203,8 +221,8 @@ namespace Floyd
             data.DataSource = dt;
             for (int k = 0; k < n; k++)
             {
-                data.Rows[0].Cells[k].Style.BackColor = Color.Green;
-                data.Rows[k].Cells[0].Style.BackColor = Color.Green;
+                data.Rows[0].Cells[k].Style.BackColor = Color.Moccasin;
+                data.Rows[k].Cells[0].Style.BackColor = Color.Moccasin;
             }
         }
 
